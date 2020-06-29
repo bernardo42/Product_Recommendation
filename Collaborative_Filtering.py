@@ -35,8 +35,8 @@ purchase_detail.columns=['Life Insurance','Health Insurance','Accident Insurance
 purchase_detail=purchase_detail.fillna(0)
 # mencari correlation
 product_similarity_df = purchase_detail.corr(method='pearson')
-def get_product_recommendation(movie_name):
-    similar_score = product_similarity_df[movie_name]
+def get_product_recommendation(product_name):
+    similar_score = product_similarity_df[product_name]
     similar_score = similar_score.sort_values(ascending=False)
     return similar_score
 print(get_product_recommendation('Life Insurance'))

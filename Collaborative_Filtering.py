@@ -8,9 +8,6 @@ customer=pd.read_csv('customer.csv')
 customer_transaction = transaction.merge(customer, left_on = 'id_customer', right_on = 'id_customer')
 customer_transaction = customer_transaction[['id_customer', 'id_product', 'num_of_purchase']]
 
-"""merged.groupby('id_product')['num_of_purchase'].mean().sort_values(ascending=False).head()
-merged.groupby('id_product')['num_of_purchase'].sum().sort_values(ascending=False).head()"""
-
 # table rata2 penjualan per product dan jumlah product telah dijual
 purchase_mean_count = pd.DataFrame(customer_transaction.groupby('id_product')['num_of_purchase'].mean())
 purchase_mean_count.rename(columns = {'num_of_purchase':'mean_of_purchase'}, inplace = True)
@@ -39,4 +36,4 @@ def get_product_recommendation(product_name):
     similar_score = product_similarity_df[product_name]
     similar_score = similar_score.sort_values(ascending=False)
     return similar_score
-print(get_product_recommendation('Life Insurance'))
+print(get_product_recommendation('Health Insurance'))
